@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern font stack with Inter for better readability */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(https://rsms.me/inter/inter.css);
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Apply modern font to body */
+body {
+  @apply font-sans text-gray-800 bg-gray-50 dark:text-gray-100 dark:bg-gray-900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* Glassmorphism effect for cards - modern design element */
+.glass-card {
+  @apply bg-white/80 backdrop-blur-sm border border-white/30 rounded-2xl shadow-lg
+  transition-all duration-300 hover:shadow-xl;
+}
+
+/* Dark mode glassmorphism */
+.dark .glass-card {
+  @apply bg-gray-800/80 border-gray-700/50;
+}
+
+/* Modern gradient button with subtle animation */
+.btn-gradient {
+  @apply bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium rounded-xl
+  transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg;
+}
+
+/* Dark mode button */
+.dark .btn-gradient {
+  @apply from-blue-700 to-blue-800;
+}
+
+/* Light mode button */
+.light .btn-gradient {
+  @apply from-blue-500 to-blue-600;
+}
+
+/* Modern link styling with animated underline */
+.link-underline {
+  @apply relative inline-block;
+}
+
+.link-underline::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 dark:bg-blue-400 transition-all duration-300;
+}
+
+.link-underline:hover::after {
+  @apply w-full;
+}
+
+/* Skill tag with modern styling */
+.skill-tag {
+  @apply px-5 py-2.5 rounded-xl text-sm font-medium bg-blue-50 text-blue-700 
+  border border-blue-100 hover:bg-blue-100 transition-colors duration-200
+  shadow-sm;
+}
+
+.dark .skill-tag {
+  @apply bg-blue-900/30 text-blue-200 border-blue-800/50 hover:bg-blue-800/40;
+}
+
+/* Experience timeline styling - modern visual representation of career path */
+.timeline-item {
+  @apply relative pl-8 pb-10;
+}
+/*
+.timeline-item::before {
+  content: '';
+  @apply absolute left-0 top-1 w-3.5 h-3.5 rounded-full bg-blue-600 border-4 border-white
+  dark:border-gray-800;
+}
+
+.timeline-item::after {
+  content: '';
+  @apply absolute left-1.5 top-4 w-px h-full bg-gray-200 dark:bg-gray-700;
+}
+*/
+.timeline-item:last-child::after {
+  @apply hidden;
+}
+
+/* Modern section header with gradient underline */
+.section-header {
+  @apply text-3xl font-bold mb-10 relative inline-block;
+}
+
+.section-header::after {
+  content: '';
+  @apply absolute -bottom-2 left-0 w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full;
+}
+
+.dark .section-header {
+  @apply text-white;
+}
+
+/* Animation utilities for modern entrance effects */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* Modern divider with gradient */
+.divider {
+  @apply my-12 h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent
+  dark:via-gray-700;
+}
+
+/* Smooth hover card effect */
+.card-hover {
+  @apply transform transition-all duration-300 hover:-translate-y-1;
+}
+
+/* Custom scrollbar - modern look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a5568;
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+}
+
+/* Subtle floating animation for hero elements */
+.float-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Modern hero section gradient */
+.hero-gradient {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+/* Dark mode hero gradient */
+.dark .hero-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* Professional badge for current position */
+.current-position-badge {
+  @apply px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800;
+}
+
+.dark .current-position-badge {
+  @apply bg-green-900/30 text-green-200;
+}
+
+/* Soft shadow for modern depth */
+.shadow-soft {
+  @apply shadow-[0_4px_20px_rgba(0,0,0,0.08)];
+}
+
+.dark .shadow-soft {
+  @apply shadow-[0_4px_20px_rgba(0,0,0,0.2)];
+}
+
+/* Hover effect for navigation items */
+.nav-item {
+  @apply relative transition-colors duration-200;
+}
+
+.nav-item::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 dark:bg-blue-400 transition-all duration-200;
+}
+
+.nav-item:hover::after {
+  @apply w-full;
+}
+
+/* Active navigation item indicator */
+.nav-item.active {
+  @apply text-blue-600 dark:text-blue-400 font-medium;
+}
+
+.nav-item.active::after {
+  @apply w-full;
+}
+
+/* Modern avatar styling */
+.avatar {
+  @apply w-24 h-24 rounded-2xl object-cover border-4 border-white dark:border-gray-800
+  shadow-xl;
+}
+
+/* Animation for skill tags */
+.skill-tag {
+  animation: tagEntrance 0.4s ease-out forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes tagEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Professional hover effect for project cards */
+.project-card {
+  @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+  transform: translateY(0);
+  will-change: transform, box-shadow;
+}
+
+/* Modern loading animation */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  @apply bg-gray-200 dark:bg-gray-700 rounded-xl;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(200,200,200,0.5) 50%, rgba(255,255,255,0) 100%);
+  background-size: 400px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Dark mode specific styles for all components */
+.dark {
+  --tw-prose-body: theme('colors.gray.300');
+  --tw-prose-headings: theme('colors.white');
+  --tw-prose-lead: theme('colors.gray.400');
+  --tw-prose-links: theme('colors.blue.400');
+  --tw-prose-bold: theme('colors.white');
+  --tw-prose-counters: theme('colors.gray.500');
+  --tw-prose-bullets: theme('colors.gray.600');
+  --tw-prose-hr: theme('colors.gray.700');
+  --tw-prose-quotes: theme('colors.gray.300');
+  --tw-prose-quote-borders: theme('colors.gray.700');
+  --tw-prose-captions: theme('colors.gray.500');
+  --tw-prose-code: theme('colors.white');
+  --tw-prose-pre-code: theme('colors.gray.200');
+  --tw-prose-pre-bg: theme('colors.gray.800');
+  --tw-prose-th-borders: theme('colors.gray.600');
+  --tw-prose-td-borders: theme('colors.gray.700');
+}
+
+/* Light mode specific styles */
+.light {
+  --tw-prose-body: theme('colors.gray.700');
+  --tw-prose-headings: theme('colors.gray.900');
+  --tw-prose-lead: theme('colors.gray.600');
+  --tw-prose-links: theme('colors.blue.600');
+  --tw-prose-bold: theme('colors.gray.900');
+  --tw-prose-counters: theme('colors.gray.500');
+  --tw-prose-bullets: theme('colors.gray.400');
+  --tw-prose-hr: theme('colors.gray.300');
+  --tw-prose-quotes: theme('colors.gray.800');
+  --tw-prose-quote-borders: theme('colors.gray.300');
+  --tw-prose-captions: theme('colors.gray.500');
+  --tw-prose-code: theme('colors.gray.800');
+  --tw-prose-pre-code: theme('colors.gray.900');
+  --tw-prose-pre-bg: theme('colors.gray.100');
+  --tw-prose-th-borders: theme('colors.gray.300');
+  --tw-prose-td-borders: theme('colors.gray.200');
+}
+
+/* Global dark mode transition */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* For the PDF generation process */
+.pdf-generation {
+  @apply hidden;
+}
+
+.pdf-section {
+  @apply break-inside-avoid;
+}
+
+.pdf-header {
+  @apply text-2xl font-bold text-blue-900 mb-2;
+}
+
+.pdf-subheader {
+  @apply text-xl font-semibold text-blue-700 mt-4 mb-2;
+}
+
+.pdf-item {
+  @apply mb-4;
+}
+
+.pdf-skills-container {
+  @apply flex flex-wrap gap-2;
+}
+
+.pdf-skill-tag {
+  @apply bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm;
+}
