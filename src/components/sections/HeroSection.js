@@ -1,5 +1,5 @@
 // src/components/sections/HeroSection.js
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect} from 'react';
 import { generatePDF } from '../../utils/cvGenerator';
 import { resumeData } from '../../data/resumeData';
 

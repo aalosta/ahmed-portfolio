@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect, useMemo } from 'react';
+// src/context/ThemeContext.js
+import React, { createContext, useState, useEffect, useCallback, useMemo } from 'react';
 
 export const ThemeContext = createContext();
 
@@ -26,14 +27,14 @@ export const ThemeProvider = ({ children }) => {
     }
   }, []);
   
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const toggleDarkMode = useCallback(() => {
+    setDarkMode(prevMode => !prevMode);
+  }, []);
   
   const value = useMemo(() => ({
     darkMode,
     toggleDarkMode
-  }), [darkMode]);
+  }), [darkMode, toggleDarkMode]);
   
   return (
     <ThemeContext.Provider value={value}>
