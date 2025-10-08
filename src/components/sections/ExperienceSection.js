@@ -7,13 +7,6 @@ const ExperienceSection = () => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
   
-  // Function to get translated content
-  const getContent = (field) => {
-    return isArabic && resumeData.experience[0][`${field}_ar`] ? 
-      resumeData.experience.map(exp => exp[`${field}_ar`]) :
-      resumeData.experience.map(exp => exp[field]);
-  };
-
   return (
     <section className="py-16 bg-gray-50 dark:bg-gray-800" id="experience">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
