@@ -1,0 +1,60 @@
+{
+  "navbar": {
+    "Ahmed Alosta": "أحمد الاسطة",
+    "home": "الرئيسية",
+    "education": "التعليم",
+    "skills": "المهارات",
+    "experience": "الخبرة العملية",
+    "contact": "اتصل بي"
+  },
+  "hero": {
+    "title": "أحمد الاسطة",
+    "subtitle": "مهندس أنظمة مدمجة",
+    "description": "مهندس تكنولوجيا معلومات و اتصالات ذو دوافع ذاتية مع مهارات مثبتة، مستقل للغاية وقادر على التفوق في أي دور .",
+    "viewExperience": "عرض خبرتي العملية",
+    "contactMe": "اتصل بي",
+    "downloadCV": "تنزيل السيرة الذاتية",
+    "printCV": "طباعة",
+    "currentPosition": "UPS حاليا لدى"
+  },
+  "sections": {
+    "education": "التعليم",
+    "skills": "المهارات والخبرات",
+    "experience": "الخبرة العملية",
+    "contact": "اتصل بي"
+  },
+  "contact": {
+    "contactInformation": "معلومات الاتصال",
+    "message": "الرسالة",
+    "messagePlaceholder": "رسالتك",
+    "name": "الاسم",
+    "yourName": "اسمك",
+    "emailPlaceholder": "ايميلك@example.com",
+    "sending": "جاري الإرسال...",
+    "email": "البريد الإلكتروني",
+    "location": "الموقع",
+    "linkedin": "لينكد إن",
+    "nationality": "الجنسية",
+    "sendMessage": "إرسال رسالة",
+    "success": "نجاح!",
+    "successMessage": "تم إرسال رسالتك. سأرد عليك قريبًا.",
+    "error": "خطأ:",
+    "errorMessage": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى."
+  },
+  "cv": {
+    "professionalSummary": "الملف الشخصي",
+    "workExperience": "الخبرة العملية",
+    "education": "التعليم",
+    "skills": "المهارات",
+    "technicalSkills": "المهارات التقنية",
+    "professionalStrengths": "المهارات المهنية",
+    "languages": "اللغات",
+    "training": "التدريب والشهادات",
+    "interests": "الاهتمامات"
+  },
+  "education":{
+    "degree": "بكالوريوس في هندسة تكنولوجيا وتقنية المعلومات والاتصالات",
+    "university": "جامعة فونتيس للعلوم التطبيقية",
+    "location": "هولندا - أيندهوفن"
+  }
+}

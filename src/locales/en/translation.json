@@ -1,0 +1,63 @@
+{
+  "navbar": {
+    "Ahmed Alosta": "Ahmed Alosta",
+    "home": "Home",
+    "education": "Education",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Ahmed Alosta",
+    "subtitle": "Embedded Systems Engineer",
+    "description": "Self-motivated ICT Engineer with proven skills, Highly independent and capable of excelling in any given role.",
+    "viewExperience": "View My Experience",
+    "contactMe": "Contact Me",
+    "downloadCV": "Download CV",
+    "printCV": "Print CV",
+    "currentPosition": "Currently at UPS"
+  },
+  "sections": {
+    "education": "Education",
+    "skills": "Skills & Expertise",
+    "experience": "Work Experience",
+    "contact": "Contact Me"
+  },
+  
+  "contact": {
+    "contactInformation": "Contact Information",
+    "sendMessage": "Send Message",
+    "email": "Email",
+    "location": "Location",
+    "linkedin": "LinkedIn",
+    "name": "Name",
+    "yourName": "Your name",
+    "emailPlaceholder": "your.email@example.com",
+    "message": "Message",
+    "messagePlaceholder": "Your message",
+    "sending": "Sending...",
+    "success": "Success",
+    "successMessage": "Your message has been sent. I'll get back to you soon.",
+    "error": "Error",
+    "errorMessage": "Failed to send message. Please try again or contact me directly at",
+    "orSendDirectly": "Or send directly to"
+  },
+  
+  "cv": {
+    "professionalSummary": "Professional Summary",
+    "workExperience": "Work Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "technicalSkills": "Technical Skills",
+    "professionalStrengths": "Professional Strengths",
+    "languages": "Languages",
+    "training": "Training & Certifications",
+    "interests": "Interests"
+  },
+
+  "education":{
+    "degree": "Bachelor's Degree in ICT and technology Engineering",
+    "university": "Fontys University of Applied Sciences",
+    "location": "The Netherlands - Eindhoven"
+  }
+}

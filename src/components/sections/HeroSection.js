@@ -1,13 +1,15 @@
 // src/components/sections/HeroSection.js
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { generatePDF } from '../../utils/cvGenerator';
 import { resumeData } from '../../data/resumeData';
 
 const HeroSection = () => {
-  
+  const { t } = useTranslation();
+
   useEffect(() => {
-    // Create print-specific styles
-    const style = document.createElement('style');
+    // Optional: Add print styles for browser print
+     const style = document.createElement('style');
     style.innerHTML = `
       @media print {
         body > *:not(.cv-print-area) {
@@ -193,6 +195,7 @@ const HeroSection = () => {
       window.location.reload();
     }, 100);
   };
+    
 
   return (
     <section className="hero-gradient py-16">
@@ -200,13 +203,13 @@ const HeroSection = () => {
         <div className="flex flex-col md:flex-row items-center">
           {/* Left side - Text content */}
           <div className="md:w-1/2 mb-10 md:mb-0 md:pr-12 animate-slide-up">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Ahmed Alosta</h1>
-            <h2 className="text-2xl md:text-3xl text-blue-600 dark:text-blue-400 font-semibold mb-6">Embedded Systems Engineer</h2>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">{t('hero.title')}</h1>
+            <h2 className="text-2xl md:text-3xl text-blue-600 dark:text-blue-400 font-semibold mb-6">{t('hero.subtitle')}</h2>
             <p className="text-xl text-gray-700 dark:text-gray-300 mb-8">
-              Self-motivated graduate with proven skills, Highly independent and capable of excelling in any given role.
+              {t('hero.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              {/* CV Download Button */}
+              {/* Corrected CV Download Button - No routing components */}
               <button 
                 onClick={(e) => {
                   e.preventDefault();
@@ -225,19 +228,21 @@ const HeroSection = () => {
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                 </svg>
-                Download CV
+                {t('hero.downloadCV')}
               </button>
 
-              {/* CV Print Button */}
-              <button 
-                onClick={handlePrint}
-                className="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-300 border-2 border-blue-100 dark:border-blue-900/50 px-6 py-3 rounded-xl text-lg font-medium hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 flex items-center justify-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4m0 0h8m-8 0a2 2 0 01-2-2v-4a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2m-8 0h4"></path>
-                </svg>
-                Print CV
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4">
+                {/* Corrected CV Print Button - No routing components */}
+                <button 
+                  onClick={handlePrint}
+                  className="btn-gradient px-6 py-3 rounded-xl text-lg font-medium flex items-center justify-center"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4m0 0h8m-8 0a2 2 0 01-2-2v-4a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2m-8 0h4"></path>
+                  </svg>
+                  {t('hero.printCV')}
+                </button>
+              </div>
             </div>
           </div>
           
@@ -247,8 +252,8 @@ const HeroSection = () => {
               {/* Professional headshot container */}
               <div className="glass-card p-2 shadow-soft hover:shadow-xl transition-all duration-300">
                 <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800">
-                 <img 
-                    src="/img/Ahmed.jpg"  // Correct path - starts with /
+                  <img 
+                    src="/img/Ahmed.jpg" 
                     alt="Ahmed Alosta - Embedded Systems Engineer" 
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -259,7 +264,7 @@ const HeroSection = () => {
                         </div>
                       `;
                     }}
-                />
+                  />
                 </div>
                 
                 {/* Decorative element */}
@@ -268,7 +273,9 @@ const HeroSection = () => {
               
               {/* Current position indicator */}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 px-4 py-1 rounded-full shadow-md current-position-badge">
-                <span className="text-sm font-medium">Currently at UPS</span>
+                <span className= "text-sm font-medium">
+                  {t('hero.currentPosition')}
+                </span>
               </div>
             </div>
           </div>

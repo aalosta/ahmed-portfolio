@@ -1,14 +1,27 @@
 // src/components/layout/Navbar.js
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
   const [darkMode, setDarkMode] = useState(true); // Default to dark mode
+  const { i18n } = useTranslation();
   
-  // Initialize dark mode from localStorage
+  // Initialize language and dark mode
   useEffect(() => {
+    // Initialize language
+    const savedLanguage = localStorage.getItem('language');
+    
+    // If no language is saved, default to English
+    if (!savedLanguage) {
+      i18n.changeLanguage('en');
+      localStorage.setItem('language', 'en');
+    }
+    
+    // Initialize dark mode
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode !== null) {
       const isDark = JSON.parse(savedDarkMode);
@@ -19,7 +32,7 @@ const Navbar = () => {
         document.documentElement.classList.remove('dark');
       }
     }
-  }, []);
+  }, [i18n]);
   
   // Function to toggle dark mode
   const toggleDarkMode = () => {
@@ -32,6 +45,13 @@ const Navbar = () => {
     } else {
       document.documentElement.classList.remove('dark');
     }
+  };
+
+  // Function to toggle language
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLang);
+    localStorage.setItem('language', newLang);
   };
   
   // Function to handle smooth scrolling
@@ -91,7 +111,7 @@ const Navbar = () => {
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button */}
+            {/* Mobile menu button - always visible on mobile */}
             <button 
               type="button" 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -104,18 +124,9 @@ const Navbar = () => {
                 fill="none" 
                 stroke="currentColor" 
                 strokeWidth="1.5" 
-                className={`size-6 ${mobileMenuOpen ? 'hidden' : ''}`}
+                className="w-6 h-6"
               >
-                <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <svg 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="1.5" 
-                className={`size-6 ${mobileMenuOpen ? '' : 'hidden'}`}
-              >
-                <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
             </button>
           </div>
@@ -124,9 +135,13 @@ const Navbar = () => {
             <div className="flex shrink-0 items-center">
               <button 
                 onClick={(e) => handleScroll(e, 'hero')}
-                className="text-xl font-bold text-white"
+                className={`rounded-md px-4 py-2 text-xl font-bold ${
+                  activeSection === 'hero' 
+                    ? 'bg-gray-950/50 text-white' 
+                    : 'text-white hover:bg-white/5'
+                }`}
               >
-                Ahmed Alosta
+                {t('navbar.Ahmed Alosta')}
               </button>
             </div>
             
@@ -141,7 +156,7 @@ const Navbar = () => {
                       : 'text-gray-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  Education
+                  {t('navbar.education')}
                 </button>
 
                 <button 
@@ -152,7 +167,7 @@ const Navbar = () => {
                       : 'text-gray-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  Skills
+                  {t('navbar.skills')}
                 </button>
 
                 <button 
@@ -163,7 +178,7 @@ const Navbar = () => {
                       : 'text-gray-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  Experience
+                  {t('navbar.experience')}
                 </button>
 
                 <button 
@@ -174,97 +189,157 @@ const Navbar = () => {
                       : 'text-gray-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  Contact
+                  {t('navbar.contact')}
                 </button>
               </div>
             </div>
           </div>
           
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {/* Dark Mode Toggle - With Banana Moon Icon */}
-            <button 
-              type="button"
-              onClick={toggleDarkMode}
-              className="relative rounded-full p-1.5 text-gray-300 hover:text-white hover:bg-white/10 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 mr-3 transition-colors duration-200"
-              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              <span className="absolute -inset-1.5"></span>
-              <span className="sr-only">{darkMode ? "Switch to light mode" : "Switch to dark mode"}</span>
-              {darkMode ? (
+            {/* Container for icons with consistent spacing in both LTR and RTL */}
+            <div className={`flex items-center ${i18n.language === 'ar' ? 'space-x-reverse' : ''} space-x-3`}>
+              {/* Language Toggle */}
+              <button 
+                type="button"
+                onClick={toggleLanguage}
+                className="relative rounded-full p-1.5 text-gray-300 hover:text-white hover:bg-white/10 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 transition-colors duration-200"
+                aria-label={i18n.language === 'en' ? "Switch to Arabic" : "Switch to English"}
+              >
+                <span className="absolute -inset-1.5"></span>
+                <span className="sr-only">{i18n.language === 'en' ? "Switch to Arabic" : "Switch to English"}</span>
+                {i18n.language === 'en' ? (
+                  <div className="flex items-center">
+                    <span className="text-sm font-medium mr-1">EN</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <span className="text-sm font-medium mr-1">AR</span>
+                  </div>
+                )}
+              </button>
+              
+              {/* Dark Mode Toggle - With Banana Moon Icon */}
+              <button 
+                type="button"
+                onClick={toggleDarkMode}
+                className="relative rounded-full p-1.5 text-gray-300 hover:text-white hover:bg-white/10 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 transition-colors duration-200"
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                <span className="absolute -inset-1.5"></span>
+                <span className="sr-only">{darkMode ? "Switch to light mode" : "Switch to dark mode"}</span>
+                {darkMode ? (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                  </svg>
+                ) : (
+                  /* Half Moon / Crescent Moon Icon */
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 11.5066C3 16.7497 7.25034 21 12.4934 21C16.2209 21 19.4466 18.8518 21 15.7259C12.4934 15.7259 8.27411 11.5066 8.27411 3C5.14821 4.55344 3 7.77915 3 11.5066Z" />
+                  </svg>
+                )}
+              </button>
+              
+              {/* Contact button - scrolls to contact section */}
+              <button 
+                type="button"
+                onClick={(e) => handleScroll(e, 'contact')}
+                className="relative rounded-full p-1.5 text-gray-300 hover:text-white hover:bg-white/10 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 transition-colors duration-200"
+              >
+                <span className="absolute -inset-1.5"></span>
+                <span className="sr-only">Contact me</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                  <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.18 0l-7.5-4.616A2.25 2.25 0 0 1 3 6.993V6.75" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              ) : (
-                /* Half Moon / Crescent Moon Icon */
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 11.5066C3 16.7497 7.25034 21 12.4934 21C16.2209 21 19.4466 18.8518 21 15.7259C12.4934 15.7259 8.27411 11.5066 8.27411 3C5.14821 4.55344 3 7.77915 3 11.5066Z" />
-                </svg>
-              )}
-            </button>
-            
-            {/* Contact button - scrolls to contact section */}
-            <button 
-              type="button"
-              onClick={(e) => handleScroll(e, 'contact')}
-              className="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
-            >
-              <span className="absolute -inset-1.5"></span>
-              <span className="sr-only">Contact me</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-6">
-                <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.18 0l-7.5-4.616A2.25 2.25 0 0 1 3 6.993V6.75" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="sm:hidden">
-          <div className="space-y-1 px-2 pt-2 pb-3">
+      {/* Mobile menu - always visible on mobile */}
+      <div className="sm:hidden">
+        <div className="space-y-1 px-4 py-2 bg-gray-900/50">
+          <div className="flex justify-between items-center pb-2 border-b border-gray-700">
+            <span className="text-white font-medium">{t('navbar.menu')}</span>
+            <button 
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-gray-400 hover:text-white"
+            >
+              <svg 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                className="w-5 h-5"
+              >
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+          
+          <div className={`${mobileMenuOpen ? 'block' : 'hidden'} space-y-2`}>
             <button 
               onClick={(e) => handleScroll(e, 'education')}
-              className={`block rounded-md px-3 py-2 text-base font-medium ${
+              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'education' 
-                  ? 'bg-gray-950/50 text-white' 
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-gray-800 text-white' 
+                  : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
-              Education
+              {t('navbar.education')}
             </button>
             <button 
               onClick={(e) => handleScroll(e, 'skills')}
-              className={`block rounded-md px-3 py-2 text-base font-medium ${
+              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'skills' 
-                  ? 'bg-gray-950/50 text-white' 
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-gray-800 text-white' 
+                  : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
-              Skills
+              {t('navbar.skills')}
             </button>
             <button 
               onClick={(e) => handleScroll(e, 'experience')}
-              className={`block rounded-md px-3 py-2 text-base font-medium ${
+              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'experience' 
-                  ? 'bg-gray-950/50 text-white' 
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-gray-800 text-white' 
+                  : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
-              Experience
+              {t('navbar.experience')}
             </button>
             <button 
               onClick={(e) => handleScroll(e, 'contact')}
-              className={`block rounded-md px-3 py-2 text-base font-medium ${
+              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'contact' 
-                  ? 'bg-gray-950/50 text-white' 
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-gray-800 text-white' 
+                  : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
-              Contact
+              {t('navbar.contact')}
             </button>
+            
+            {/* Language Toggle in Mobile Menu */}
+            <div className="px-3 py-2">
+              <button 
+                type="button"
+                onClick={toggleLanguage}
+                className="w-full flex items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-800/50 hover:text-white"
+              >
+                <span>{t('navbar.language')}</span>
+                <span className="font-medium">
+                  {i18n.language === 'en' ? 'EN' : 'AR'}
+                </span>
+              </button>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
