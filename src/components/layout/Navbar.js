@@ -259,28 +259,6 @@ const Navbar = () => {
       {/* Mobile menu - always visible on mobile */}
 <div className="sm:hidden">
   <div className="space-y-1 px-4 py-2 bg-gray-900/50">
-    <div className="flex justify-between items-center pb-2 border-b border-gray-700">
-      <button 
-        type="button"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="text-gray-400 hover:text-white"
-      >
-        <svg 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          className="w-5 h-5"
-        >
-          {mobileMenuOpen ? (
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          ) : (
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          )}
-        </svg>
-      </button>
-    </div>
-          
           <div className={`${mobileMenuOpen ? 'block' : 'hidden'} space-y-2`}>
             <button 
               onClick={(e) => handleScroll(e, 'education')}

@@ -5,11 +5,12 @@ import { generatePDF } from '../../utils/cvGenerator';
 import { resumeData } from '../../data/resumeData';
 
 const HeroSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
 
   useEffect(() => {
     // Optional: Add print styles for browser print
-     const style = document.createElement('style');
+    const style = document.createElement('style');
     style.innerHTML = `
       @media print {
         body > *:not(.cv-print-area) {
@@ -84,14 +85,14 @@ const HeroSection = () => {
           ${resumeData.experience.map(exp => `
             <div style="margin-bottom: 15px;">
               <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-                <h4 style="font-weight: 600; color: #1e293b; font-size: 11.5pt; margin: 5px 0 3px 0; flex: 1;">${exp.title}</h4>
-                <div style="text-align: right; white-space: nowrap; margin-left: 10px;">
+                <h4 style="font-weight: 600; color: #1e293b; font-size: 11.5pt; margin: 5px 0 3px 0; flex: 1; ${isArabic ? 'text-align: right;' : 'text-align: left;'}">${exp.title}</h4>
+                <div style="text-align: ${isArabic ? 'left' : 'right'}; white-space: nowrap; margin-${isArabic ? 'right' : 'left'}: 10px;">
                   <div style="color: #64748b; font-size: 9.5pt; margin-bottom: 2px;">${exp.period}</div>
                   <div style="color: #64748b; font-size: 9.5pt;">${exp.location}</div>
                 </div>
               </div>
-              <h5 style="font-weight: 500; color: #1e40af; margin: 0 0 5px 0; font-size: 10.5pt;">${exp.company}</h5>
-              <p style="margin: 5px 0 0 0; text-align: justify; line-height: 1.55; color: #475569; font-size: 9.8pt;">${exp.description}</p>
+              <h5 style="font-weight: 500; color: #1e40af; margin: 0 0 5px 0; font-size: 10.5pt; ${isArabic ? 'text-align: right;' : ''}">${exp.company}</h5>
+              <p style="margin: 5px 0 0 0; text-align: ${isArabic ? 'right' : 'justify'}; line-height: 1.55; color: #475569; font-size: 9.8pt;">${exp.description}</p>
             </div>
           `).join('')}
         </div>
@@ -102,10 +103,10 @@ const HeroSection = () => {
           
           ${resumeData.education.map(edu => `
             <div style="margin-bottom: 15px;">
-              <h4 style="font-weight: 600; color: #1e293b; font-size: 11.5pt; margin: 5px 0;">${edu.degree}</h4>
+              <h4 style="font-weight: 600; color: #1e293b; font-size: 11.5pt; margin: 5px 0; ${isArabic ? 'text-align: right;' : ''}">${edu.degree}</h4>
               <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-                <span style="color: #1e40af; font-size: 10.5pt;">${edu.institution}</span>
-                <div style="text-align: right; white-space: nowrap;">
+                <span style="color: #1e40af; font-size: 10.5pt; ${isArabic ? 'text-align: right;' : ''}">${edu.institution}</span>
+                <div style="text-align: ${isArabic ? 'left' : 'right'}; white-space: nowrap;">
                   <div style="color: #64748b; font-size: 9.5pt; margin-bottom: 2px;">${edu.period}</div>
                   <div style="color: #64748b; font-size: 9.5pt;">${edu.location}</div>
                 </div>
@@ -119,8 +120,8 @@ const HeroSection = () => {
           <h3 style="color: #1e40af; font-size: 14pt; font-weight: 600; margin: 0 0 12px 0; padding-bottom: 5px; border-bottom: 2px solid #3b82f6; width: fit-content;">Skills</h3>
           
           <div style="margin-bottom: 15px;">
-            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0;">Technical Skills</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0; ${isArabic ? 'text-align: right;' : ''};">Technical Skills</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; ${isArabic ? 'direction: rtl;' : ''}">
               ${resumeData.skills.technical.map(skill => `
                 <span style="background-color: #dbeafe; color: #1e40af; padding: 3px 8px; border-radius: 4px; font-size: 9.5pt; border: 1px solid #bfdbfe;">${skill}</span>
               `).join('')}
@@ -128,8 +129,8 @@ const HeroSection = () => {
           </div>
           
           <div style="margin-bottom: 15px;">
-            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0;">Professional Strengths</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0; ${isArabic ? 'text-align: right;' : ''};">Professional Strengths</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; ${isArabic ? 'direction: rtl;' : ''}">
               ${resumeData.skills.soft.map(strength => `
                 <span style="background-color: #f0f9ff; color: #1e40af; padding: 3px 8px; border-radius: 4px; font-size: 9.5pt;">${strength}</span>
               `).join('')}
@@ -141,10 +142,10 @@ const HeroSection = () => {
         <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
           <!-- Languages -->
           <div style="flex: 1; min-width: 200px;">
-            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0;">Languages</h4>
-            <ul style="padding-left: 18px; margin: 0;">
+            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0; ${isArabic ? 'text-align: right;' : ''};">Languages</h4>
+            <ul style="padding-${isArabic ? 'right' : 'left'}: 18px; margin: 0;">
               ${resumeData.personalInfo.languages.map(lang => `
-                <li style="margin-bottom: 8px; font-size: 9.5pt;">
+                <li style="margin-bottom: 8px; font-size: 9.5pt; ${isArabic ? 'text-align: right;' : ''}">
                   <strong>${lang.language}:</strong> ${lang.proficiency}
                 </li>
               `).join('')}
@@ -153,10 +154,10 @@ const HeroSection = () => {
           
           <!-- Training -->
           <div style="flex: 1; min-width: 200px;">
-            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0;">Training & Certifications</h4>
-            <ul style="padding-left: 18px; margin: 0;">
+            <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0; ${isArabic ? 'text-align: right;' : ''};">Training & Certifications</h4>
+            <ul style="padding-${isArabic ? 'right' : 'left'}: 18px; margin: 0;">
               ${resumeData.training.map(cert => `
-                <li style="margin-bottom: 7px; font-size: 9.5pt;">${cert}</li>
+                <li style="margin-bottom: 7px; font-size: 9.5pt; ${isArabic ? 'text-align: right;' : ''}">${cert}</li>
               `).join('')}
             </ul>
           </div>
@@ -164,8 +165,8 @@ const HeroSection = () => {
         
         <!-- Interests -->
         <div style="margin-bottom: 15px;">
-          <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0;">Interests</h4>
-          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <h4 style="color: #1e40af; font-size: 12pt; font-weight: 500; margin: 0 0 8px 0; ${isArabic ? 'text-align: right;' : ''};">Interests</h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; ${isArabic ? 'direction: rtl;' : ''}">
             ${resumeData.interests.map(interest => `
               <span style="background-color: #e0f2fe; color: #0c4a6e; padding: 2px 7px; border-radius: 4px; font-size: 9.5pt;">${interest}</span>
             `).join('')}
@@ -198,17 +199,17 @@ const HeroSection = () => {
     
 
   return (
-    <section className="hero-gradient py-16">
+    <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center">
+        <div className={`flex ${isArabic ? 'flex-col-reverse md:flex-row-reverse' : 'flex-col md:flex-row'} items-center`}>
           {/* Left side - Text content */}
-          <div className="md:w-1/2 mb-10 md:mb-0 md:pr-12 animate-slide-up">
+          <div className={`md:w-1/2 mb-10 md:mb-0 ${isArabic ? 'md:pl-12' : 'md:pr-12'} animate-slide-up`}>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">{t('hero.title')}</h1>
             <h2 className="text-2xl md:text-3xl text-blue-600 dark:text-blue-400 font-semibold mb-6">{t('hero.subtitle')}</h2>
             <p className="text-xl text-gray-700 dark:text-gray-300 mb-8">
               {t('hero.description')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className={`flex ${isArabic ? 'flex-col-reverse' : 'flex-col'} sm:flex-row gap-4`}>
               {/* Corrected CV Download Button - No routing components */}
               <button 
                 onClick={(e) => {
@@ -225,19 +226,19 @@ const HeroSection = () => {
                 }}
                 className="btn-gradient px-6 py-3 rounded-xl text-lg font-medium flex items-center justify-center"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className={`w-5 h-5 ${isArabic ? 'mr-2' : 'ml-2'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                 </svg>
                 {t('hero.downloadCV')}
               </button>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className={`flex ${isArabic ? 'flex-col-reverse' : 'flex-col'} sm:flex-row gap-4`}>
                 {/* Corrected CV Print Button - No routing components */}
                 <button 
                   onClick={handlePrint}
                   className="btn-gradient px-6 py-3 rounded-xl text-lg font-medium flex items-center justify-center"
                 >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg className={`w-5 h-5 ${isArabic ? 'mr-2' : 'ml-2'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4m0 0h8m-8 0a2 2 0 01-2-2v-4a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2m-8 0h4"></path>
                   </svg>
                   {t('hero.printCV')}
@@ -273,7 +274,7 @@ const HeroSection = () => {
               
               {/* Current position indicator */}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 px-4 py-1 rounded-full shadow-md current-position-badge">
-                <span className= "text-sm font-medium">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {t('hero.currentPosition')}
                 </span>
               </div>
