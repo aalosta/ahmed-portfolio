@@ -285,42 +285,58 @@ const Navbar = () => {
           <div className={`${mobileMenuOpen ? 'block' : 'hidden'} space-y-2`}>
             <button 
               onClick={(e) => handleScroll(e, 'education')}
-              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
+              className={`flex items-center w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'education' 
                   ? 'bg-gray-800 text-white' 
                   : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"  d="M17.673 5.606a3326.02 3326.02 0 0 1-5.671-2.674L.138 8.524l2.03.98L2 9.531V20h1v-9.626l.72-.124.28.135v5.288c0 .914 5.206 3.533 6.249 4.049a3.89 3.89 0 0 0 3.48-.026C20 16.486 20 15.895 20 15.673v-5.288l3.854-1.857s-3.8-1.801-6.181-2.922zM19 15.504a51.526 51.526 0 0 1-5.726 3.302 2.884 2.884 0 0 1-2.582.02A40.184 40.184 0 0 1 5 15.521v-4.655l7 3.373 7-3.373zm-7-2.373L5.416 9.958l6.469-1.115-.17-.987-7.85 1.354-1.403-.676 9.537-4.495c.825.393 8.523 4.014 9.542 4.494z"></path>
+              </svg>
               {t('navbar.education')}
             </button>
+            
             <button 
               onClick={(e) => handleScroll(e, 'skills')}
-              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
+              className={`flex items-center w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'skills' 
                   ? 'bg-gray-800 text-white' 
                   : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.927-1.756 3.353 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.927 0 3.353a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a.1724 1.724 0 00-2.572 1.065c-.426 1.756-2.927 1.756-3.353 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.927 0-3.353a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
               {t('navbar.skills')}
             </button>
+            
             <button 
               onClick={(e) => handleScroll(e, 'experience')}
-              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
+              className={`flex items-center w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'experience' 
                   ? 'bg-gray-800 text-white' 
                   : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.6-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
               {t('navbar.experience')}
             </button>
+            
             <button 
               onClick={(e) => handleScroll(e, 'contact')}
-              className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
+              className={`flex items-center w-full text-left rounded-md px-3 py-2 text-base font-medium ${
                 activeSection === 'contact' 
                   ? 'bg-gray-800 text-white' 
                   : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
               }`}
             >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
               {t('navbar.contact')}
             </button>
             
@@ -329,9 +345,14 @@ const Navbar = () => {
               <button 
                 type="button"
                 onClick={toggleLanguage}
-                className="w-full flex items-center justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-800/50 hover:text-white"
+                className="flex items-center w-full justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-800/50 hover:text-white"
               >
-                <span>{t('navbar.language')}</span>
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.646 3 18.126V5z"></path>
+                  </svg>
+                  <span>{t('navbar.language')}</span>
+                </div>
                 <span className="font-medium">
                   {i18n.language === 'en' ? 'EN' : 'AR'}
                 </span>
