@@ -209,11 +209,11 @@ const Navbar = () => {
                 <span className="sr-only">{i18n.language === 'en' ? "Switch to Arabic" : "Switch to English"}</span>
                 {i18n.language === 'en' ? (
                   <div className="flex items-center">
-                    <span className="text-sm font-medium mr-1">EN</span>
+                    <span className="text-sm font-medium mr-1">AR</span>
                   </div>
                 ) : (
                   <div className="flex items-center">
-                    <span className="text-sm font-medium mr-1">AR</span>
+                    <span className="text-sm font-medium mr-1">EN</span>
                   </div>
                 )}
               </button>
