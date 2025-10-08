@@ -8,9 +8,6 @@ import EducationSection from '../components/sections/EducationSection';
 import ContactSection from '../components/sections/ContactSection';
 
 const HomePage = () => {
-  // This line initializes i18n and is required for the app to work
-  // eslint-disable-next-line no-unused-vars
-  const { t } = useTranslation();
   
   return (
     <>
