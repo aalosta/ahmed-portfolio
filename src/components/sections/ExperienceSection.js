@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { resumeData } from '../../data/resumeData';
 
 const ExperienceSection = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
   
   return (
