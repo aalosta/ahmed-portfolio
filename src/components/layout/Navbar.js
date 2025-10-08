@@ -256,10 +256,11 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu - always visible on mobile */}
+       {/* Mobile menu - always visible on mobile */}
       <div className="sm:hidden">
         <div className="space-y-1 px-4 py-2 bg-gray-900/50">
           <div className="flex justify-between items-center pb-2 border-b border-gray-700">
+            <span className="text-white font-medium">{t('navbar.menu')}</span>
             <button 
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -291,7 +292,7 @@ const Navbar = () => {
               }`}
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"  d="M17.673 5.606a3326.02 3326.02 0 0 1-5.671-2.674L.138 8.524l2.03.98L2 9.531V20h1v-9.626l.72-.124.28.135v5.288c0 .914 5.206 3.533 6.249 4.049a3.89 3.89 0 0 0 3.48-.026C20 16.486 20 15.895 20 15.673v-5.288l3.854-1.857s-3.8-1.801-6.181-2.922zM19 15.504a51.526 51.526 0 0 1-5.726 3.302 2.884 2.884 0 0 1-2.582.02A40.184 40.184 0 0 1 5 15.521v-4.655l7 3.373 7-3.373zm-7-2.373L5.416 9.958l6.469-1.115-.17-.987-7.85 1.354-1.403-.676 9.537-4.495c.825.393 8.523 4.014 9.542 4.494z"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6-2.292m0-6.708a3 3 0 110 5.396m-3.001-5.396c1.007 0 1.54.815 1.54 1.597v3.772c0 .782-.533 1.597-1.54 1.597H9.001c-1.007 0-1.54-.815-1.54-1.597V9.614c0-.782.533-1.597 1.54-1.597h.001z"></path>
               </svg>
               {t('navbar.education')}
             </button>
