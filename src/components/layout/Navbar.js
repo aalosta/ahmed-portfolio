@@ -260,7 +260,6 @@ const Navbar = () => {
       <div className="sm:hidden">
         <div className="space-y-1 px-4 py-2 bg-gray-900/50">
           <div className="flex justify-between items-center pb-2 border-b border-gray-700">
-            <span className="text-white font-medium">{t('navbar.menu')}</span>
             <button 
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -339,25 +338,6 @@ const Navbar = () => {
               </svg>
               {t('navbar.contact')}
             </button>
-            
-            {/* Language Toggle in Mobile Menu */}
-            <div className="px-3 py-2">
-              <button 
-                type="button"
-                onClick={toggleLanguage}
-                className="flex items-center w-full justify-between rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-800/50 hover:text-white"
-              >
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.646 3 18.126V5z"></path>
-                  </svg>
-                  <span>{t('navbar.language')}</span>
-                </div>
-                <span className="font-medium">
-                  {i18n.language === 'en' ? 'EN' : 'AR'}
-                </span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
