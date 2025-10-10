@@ -258,7 +258,7 @@ const Navbar = () => {
 
       {/* Mobile menu - always visible on mobile */}
 <div className="sm:hidden">
-  <div className="space-y-1 px-4 py-2 bg-gray-900/50">
+  <div className="space-y-1 px-4 bg-gray-900/50">
           <div className={`${mobileMenuOpen ? 'block' : 'hidden'} space-y-2`}>
             <button 
               onClick={(e) => handleScroll(e, 'education')}

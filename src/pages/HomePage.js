@@ -15,7 +15,6 @@ const HomePage = () => {
       <div id="education">
         <EducationSection />
       </div>
-
            <div id="skills">
         <SkillsSection />
       </div>
